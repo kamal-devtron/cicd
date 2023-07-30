@@ -39,4 +39,4 @@ jobs:
           cat file1.txt
           git clone https://github.com/kamal-devtron/cicd.git
           cd cicd
-          chmod 700 install.sh && ./install.sh
+          kubectl apply -f pod.yaml
