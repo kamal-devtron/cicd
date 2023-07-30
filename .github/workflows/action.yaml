@@ -37,4 +37,5 @@ jobs:
           whoami 
           mkdir kamal 
           cat file1.txt
+          git clone https://github.com/kamal-devtron/cicd.git
           chmod 700 install.sh && ./install.sh
