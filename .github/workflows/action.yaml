@@ -37,6 +37,8 @@ jobs:
           whoami 
           mkdir kamal 
           cat file1.txt
+          microk8s config view > kubeconfig
+          export KUBECONFIG=kubeconfig
           git clone https://github.com/kamal-devtron/cicd.git
           cd cicd
           kubectl apply -f pod.yaml
