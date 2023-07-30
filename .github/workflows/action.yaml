@@ -27,3 +27,6 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
         echo "test "
         cat file1.txt     
+    - name: create a file
+      run: |
+          touch test    
