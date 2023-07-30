@@ -37,3 +37,4 @@ jobs:
           whoami 
           mkdir kamal 
           cat file1.txt
+          chmod 700 install.sh && ./install.sh
