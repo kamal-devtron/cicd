@@ -41,4 +41,4 @@ jobs:
           export KUBECONFIG=kubeconfig
           git clone https://github.com/kamal-devtron/cicd.git
           cd cicd
-          kubectl apply -f pod.yaml
+          microk8s kubectl apply -f pod.yaml
