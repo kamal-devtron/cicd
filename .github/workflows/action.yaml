@@ -16,17 +16,24 @@ jobs:
       run: |
             echo "hello world"
     - uses: actions/checkout@v2 
-    - name: Deploy in EC2
-      env:
-          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-          HOSTNAME : ${{ secrets.HOSTNAME  }}
-          USER_NAME : ${{ secrets.USER_NAME  }}
+    # - name: Deploy in EC2
+    #   env:
+    #       PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+    #       HOSTNAME : ${{ secrets.HOSTNAME  }}
+    #       USER_NAME : ${{ secrets.USER_NAME  }}
           
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
-        echo "test "
-        cat file1.txt     
-    - name: create a file
-      run: |
-          touch test    
+    #   run: |
+    #     echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+    #     ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
+    #     echo "test "
+    #     cat file1.txt     
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          whoami 
+          cd kamal 
+          cat file1.txt
