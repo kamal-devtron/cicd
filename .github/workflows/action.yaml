@@ -1,0 +1,15 @@
+name: pushing to aws eks
+
+## Events in which job will get trigger
+on:
+ push:
+  branches:
+   - main
+
+## Job section
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+  - run: |
+        echo "hello world"
