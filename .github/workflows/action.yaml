@@ -35,5 +35,5 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           whoami 
-          cd kamal 
+          mkdir kamal 
           cat file1.txt
