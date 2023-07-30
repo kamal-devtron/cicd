@@ -9,7 +9,8 @@ on:
 ## Job section
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-  - run: |
-        echo "hello world"
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+          echo "hello world"
