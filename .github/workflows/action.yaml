@@ -17,6 +17,10 @@ jobs:
             echo "hello world"
             echo $USER
     - uses: actions/checkout@v2 
+    - name: build image from docker file
+      run: |
+            cd docker
+            docker build -t myimg .
     # - name: Deploy in EC2
     #   env:
     #       PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
