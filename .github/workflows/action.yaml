@@ -27,7 +27,7 @@ jobs:
             cd docker
             docker build -t myimg .
             docker tag myimg ${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}
-            docker push kamal1109/casbin:myimg
+            docker push kamal1109/casbin:${{ github.sha }}
                   
     # - name: Deploy in EC2
     #   env:
