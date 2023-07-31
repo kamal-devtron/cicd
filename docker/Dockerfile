@@ -1,35 +1,26 @@
-# Base Image
-FROM node:12.18.1
-
-# Seeting up env as production
-ENV NODE_ENV=production
-
-#Getting System Ready to install dependencies
-RUN apt-get clean \
-    && apt-get -y update
-    
-# Installing nginx
-RUN apt-get -y install nginx \
-    && apt-get -y install python3-dev \
-    && apt-get -y install build-essential
-
-# Creating symbolic link for access and error log from nginx
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
-
-# Making /app dir as working dir
-WORKDIR /app
-
-# Adding complete files and dirs in app dir in container
-ADD . /app/
-
-# Refer https://raw.githubusercontent.com/devtron-labs/devtron/main/sample-docker-templates/node/nginx.default for sample nginx.default
-COPY nginx.default /etc/nginx/sites-available/default
-
-# Installing dependencies
-RUN npm install --production
-RUN npm i -g pm2
-
-# Starting Server
-CMD ["sh", "-c", "service nginx start ; pm2-runtime src/index.js -i 0"]
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y \
+    git \
+    automake \
+    sudo \
+    jq \
+    autotools-dev \
+    fuse \
+    g++ \
+    curl \
+    unzip \
+    git \
+    libcurl4-gnutls-dev \
+    libfuse-dev \
+    libssl-dev \
+    libxml2-dev \
+    make \
+    pkg-config \
+    vim
+RUN git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+RUN cd s3fs-fuse&&./autogen.sh&&./configure --prefix=/usr --with-openssl&&make&&make install
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"&&unzip awscliv2.zip&&sudo ./aws/install
+RUN curl -LO https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb&&dpkg -i packages-microsoft-prod.deb
+RUN apt install libfuse3-dev fuse3 -y
+RUN apt-get update
+RUN apt install blobfuse2 -y
