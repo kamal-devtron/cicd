@@ -36,12 +36,17 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           whoami 
-          mkdir kamal 
-          cat file1.txt
           echo $USER
+          if [ -d "cicd" ]
+          then
+          cd cicd
+          git pull
+          cat install.sh
+          else
           git clone https://github.com/kamal-devtron/cicd.git
           cd cicd
           chmod 700 install.sh && ./install.sh
           microk8s config view > kubeconfig
           export KUBECONFIG=kubeconfig
+          fi
           microk8s kubectl apply -f pod.yaml
