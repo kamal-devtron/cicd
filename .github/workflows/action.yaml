@@ -42,6 +42,7 @@ jobs:
           cd cicd
           git pull
           cat install.sh
+          echo "me"
           else
           git clone https://github.com/kamal-devtron/cicd.git
           cd cicd
