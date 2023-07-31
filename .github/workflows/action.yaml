@@ -39,9 +39,8 @@ jobs:
           echo $USER
           if [ -d "cicd" ]
           then
-          cd cicd
-          git config --global pull.ff true
-          git pull
+          rm -rf cicd
+          git clone https://github.com/kamal-devtron/cicd.git
           cat install.sh
           echo "me"
           else
