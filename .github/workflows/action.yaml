@@ -15,6 +15,7 @@ jobs:
     - name: Echo
       run: |
             echo "hello world"
+            echo $USER
     - uses: actions/checkout@v2 
     # - name: Deploy in EC2
     #   env:
