@@ -41,6 +41,7 @@ jobs:
           then
           rm -rf cicd
           git clone https://github.com/kamal-devtron/cicd.git
+          cd cicd
           cat install.sh
           echo "me"
           else
