@@ -63,5 +63,9 @@ jobs:
           microk8s config view > kubeconfig
           export KUBECONFIG=kubeconfig
           fi
-          sed -i  's|microk8s kubectl get -f pod.yaml -o=jsonpath='{.spec.containers[*].image}'| ${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}|' pod.yaml 
+          sed -i  's/microk8s kubectl get -f pod.yaml -o=jsonpath='{.spec.containers[*].image}'/${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}|' pod.yaml 
           microk8s kubectl apply -f pod.yaml
+
+
+
+          
