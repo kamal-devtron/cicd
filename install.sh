@@ -6,4 +6,4 @@ microk8s enable dns storage helm3
 echo "alias kubectl='microk8s kubectl '" >> .bashrc
 echo "alias helm='microk8s helm3 '" >> .bashrc
 source .bashrc
-echo "Kamal Acharya ...."
+echo "Kamal Acharya ."
