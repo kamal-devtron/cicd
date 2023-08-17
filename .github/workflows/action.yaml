@@ -27,7 +27,7 @@ jobs:
             set -ex
             cd docker
             docker build -t myimg .
-            img_tag= ${{ github.sha }}
+            img_tag=${{ github.sha }}
             echo $img_tag
             docker tag myimg ${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}
             docker push kamal1109/casbin:${{ github.sha }}
