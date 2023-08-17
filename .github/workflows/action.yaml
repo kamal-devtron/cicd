@@ -24,6 +24,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: build image from docker file
       run: |
+            set -ex
             cd docker
             docker build -t myimg .
             img_tag= ${{ github.sha }}
