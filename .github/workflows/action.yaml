@@ -42,31 +42,31 @@ jobs:
     #     ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
     #     echo "test "
     #     cat file1.txt     
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        script: |
-          whoami 
-          echo $USER
-          if [ -d "cicd" ]
-          then
-          rm -rf cicd
-          git clone https://github.com/kamal-devtron/cicd.git
-          cd cicd
-          cat install.sh
-          echo "me"
-          else
-          git clone https://github.com/kamal-devtron/cicd.git
-          cd cicd
-          chmod 700 install.sh && ./install.sh
-          microk8s config view > kubeconfig
-          export KUBECONFIG=kubeconfig
-          fi
-          sed  's/microk8s kubectl get -f pod.yaml -o=jsonpath='{.spec.containers[*].image}'/${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}/g' pod.yaml 
-          microk8s kubectl apply -f pod.yaml
+    # - name: executing remote ssh commands using ssh key
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{ secrets.KEY }}
+    #     script: |
+    #       whoami 
+    #       echo $USER
+    #       if [ -d "cicd" ]
+    #       then
+    #       rm -rf cicd
+    #       git clone https://github.com/kamal-devtron/cicd.git
+    #       cd cicd
+    #       cat install.sh
+    #       echo "me"
+    #       else
+    #       git clone https://github.com/kamal-devtron/cicd.git
+    #       cd cicd
+    #       chmod 700 install.sh && ./install.sh
+    #       microk8s config view > kubeconfig
+    #       export KUBECONFIG=kubeconfig
+    #       fi
+    #       sed  's/microk8s kubectl get -f pod.yaml -o=jsonpath='{.spec.containers[*].image}'/${{ secrets.DOCKERHUB_USERNAME }}/casbin:${{ github.sha }}/g' pod.yaml 
+    #       microk8s kubectl apply -f pod.yaml
 
 
 
